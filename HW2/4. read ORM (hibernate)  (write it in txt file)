@@ -1,0 +1,39 @@
+a. lazy loading vs eager loading
+
+Eager Loading is a design pattern in which data initialization occurs on the spot.
+Lazy Loading is a design pattern that we use to defer initialization of an object as long as it's possible.
+While lazy loading delays the initialization of a resource, eager loading initializes or loads a resource as soon as the code is executed. 
+Eager loading also involves pre-loading related entities referenced by a resource.
+
+
+Lazy Loading
+Advantages:
+
+Much smaller initial load time than in the other approach
+Less memory consumption than in the other approach
+
+Disadvantages:
+Delayed initialization might impact performance during unwanted moments.
+In some cases we need to handle lazily initialized objects with special care, or we might end up with an exception.
+
+
+6.2. Eager Loading
+Advantages:
+
+No delayed initialization-related performance impacts
+Disadvantages:
+
+Long initial loading time
+Loading too much unnecessary data might impact performance
+
+
+b. why ORM
+
+Object-relational mapping (ORM) is a programming technique in which a metadata descriptor is used to connect object code to a relational database. 
+Object code is written in object-oriented programming (OOP) languages such as Java or C#.
+
+Using an ORM will remove dependencies from your code on a particular SQL dialect. 
+Instead of directly interacting with the database you'll be interacting with an abstraction layer that provides insulation between your code and the database implementation. Additionally, ORMs typically provide protection from SQL injection by constructing parameterized queries. Granted you could do this yourself, but it's nice to have the framework guarantee.
+
+ORMs work in one of two ways: some discover the schema from an existing database -- the LINQToSQL designer does this --, others require you to map your class onto a table. In both cases, once the schema has been mapped, the ORM may be able to create (recreate) your database structure for you. DB permissions probably still need to be applied by hand or via custom SQL.
+
