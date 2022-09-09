@@ -1,0 +1,30 @@
+
+Kafka broker and partition
+
+A Kafka cluster is made of one or more servers. In the Kafka universe, they are called Brokers. Each broker holds a subset of records that belongs to the entire cluster. Kafka distributes the partitions of a particular topic across multiple brokers
+
+
+
+consumer group 
+A consumer group is a group of consumers (I guess you didn’t see this coming?) that share the same group id. When a topic is consumed by consumers in the same group, every record will be delivered to only one consumer. As the official documentation states: “If all the consumer instances have the same consumer group, then the records will effectively be load-balanced over the consumer instances.”
+
+
+
+ack number：
+
+The acks setting is a client (producer) configuration. It denotes the number of brokers that must receive the record before we consider the write as successful. It support three values — 0, 1, and all.
+
+Kafka vs RabbitMQ
+
+Data Flow ：RabbitMQ uses a distinct, bounded data flow. Messages are created and sent by the producer and received by the consumer. Apache Kafka uses an unbounded data flow, with the key-value pairs continuously streaming to the assigned topic.
+
+Data Usage：RabbitMQ is best for transactional data, such as order formation and placement, and user requests. Kafka works best with operational data like process operations, auditing and logging statistics, and system activity.
+
+Messaging：RabbitMQ sends messages to users. These messages are removed from the queue once they are processed and acknowledged. Kafka is a log. It uses continuous messages, which stay in the queue until the retention time expires.
+
+Design Model：RabbitMQ employs the smart broker/dumb consumer model. The broker consistently delivers messages to consumers and keeps track of their status. Kafka uses the dumb broker/smart consumer model. Kafka doesn’t monitor the messages each user has read. Rather, it retains unread messages only, preserving all messages for a set amount of time. Consumers must monitor their position in each log.
+
+Topology：RabbitMQ uses the exchange queue topology — sending messages to an exchange where they are in turn routed to various queue bindings for the consumer’s use. Kafka employs the publish/subscribe topology, sending messages across the stream to the correct topics, and then consumed by users in the different authorized groups.
+
+
+
